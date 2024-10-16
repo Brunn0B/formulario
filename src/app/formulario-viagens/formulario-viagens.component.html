@@ -1,0 +1,43 @@
+<h2>Formulário de Viagem</h2>
+<form id="travelForm" (ngSubmit)="onSubmit()" #travelForm="ngForm">
+
+  <label for="destino">Destino:</label>
+  <select id="destino" name="destino" required [(ngModel)]="formData.destino">
+    <option value="">Selecione um destino</option>
+    <option value="Paris">Paris</option>
+    <option value="Nova York">Nova York</option>
+    <option value="Tóquio">Tóquio</option>
+    <option value="Rio de Janeiro">Rio de Janeiro</option>
+  </select>
+  <div id="destinoError" class="error"></div>
+
+  <br><br>
+
+  <label for="dataIda">Data de Ida:</label>
+  <input type="date" id="dataIda" name="dataIda" required [(ngModel)]="formData.dataIda">
+  <div id="dataIdaError" class="error"></div>
+
+  <br><br>
+
+  <label for="dataVolta">Data de Volta:</label>
+  <input type="date" id="dataVolta" name="dataVolta" required [(ngModel)]="formData.dataVolta">
+  <div id="dataVoltaError" class="error"></div>
+
+  <br><br>
+
+  <label for="passageiros">Número de Passageiros:</label>
+  <input type="number" id="passageiros" name="passageiros" min="1" max="5" required [(ngModel)]="formData.passageiros">
+  <div *ngIf="( +formData.passageiros < 1 || +formData.passageiros > 5) && travelForm.submitted" class="error">
+    O número de passageiros deve estar entre 1 e 5.
+  </div>
+
+  <br><br>
+
+  <label for="email">E-mail de Contato:</label>
+  <input type="email" id="email" name="email" required [(ngModel)]="formData.email">
+  <div id="emailError" class="error"></div>
+
+  <br><br>
+
+  <button type="submit">Enviar</button>
+</form>
